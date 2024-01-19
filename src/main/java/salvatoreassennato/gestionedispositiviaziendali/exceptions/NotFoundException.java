@@ -1,0 +1,9 @@
+package salvatoreassennato.gestionedispositiviaziendali.exceptions;
+
+import java.util.UUID;
+
+public class NotFoundException extends RuntimeException{
+    public NotFoundException(UUID id){
+        super("elemento id"+id+"non trovato");
+    }
+}
