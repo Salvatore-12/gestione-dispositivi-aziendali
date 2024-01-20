@@ -21,6 +21,8 @@ import java.util.UUID;
 public class DispositiviService {
     @Autowired
     private DispositiviDAO dispositiviDAO;
+    @Autowired
+    private  UtentiService utentiService;
 
     public Page<Dispositivo> getUtenti(int page, int size, String orderBy){
         Pageable pageable= PageRequest.of(page,size, Sort.by(orderBy));
@@ -30,11 +32,12 @@ public class DispositiviService {
         return dispositiviDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
     }
     public Dispositivo save(NewDispositivoDTO body){
-
+        UUID utente_id=body.utente_id();
+        Utente utente=this.utentiService.findById(utente_id);
         Dispositivo newDispositivo = new Dispositivo();
+        newDispositivo.setUtente(utente);
         newDispositivo.setTipologia(body.tipologia());
         newDispositivo.setStato_dispositivo(body.stato_dispositivo());
-
         return dispositiviDAO.save(newDispositivo);
     }
     public Dispositivo findByIdAndUpdate(UUID id,Dispositivo body){
