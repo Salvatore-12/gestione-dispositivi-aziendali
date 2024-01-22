@@ -37,6 +37,11 @@ public class UtentiService {
         newUtente.setEmail(body.email());
         return utentiDAO.save(newUtente);
     }
+
+    public Utente findByEmail(String email)throws NotFoundException {
+        return utentiDAO.findByEmail(email).orElseThrow(()->new NotFoundException("Utente con email"+email+"trovata!"));
+
+    }
     public Utente findByIdAndUpdate(UUID id,Utente body){
         Utente found=this.findById(id);
         found.setNome_Utente(body.getNome_Utente());
