@@ -46,7 +46,6 @@ public class UtentiService {
         return utentiDAO.save(found);
     }
     public void findByIdAndDelete(UUID id){
-        Utente found=this.findById(id);
-        utentiDAO.save(found);
+        utentiDAO.deleteById(id);
     }
 }

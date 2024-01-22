@@ -1,5 +1,6 @@
 package salvatoreassennato.gestionedispositiviaziendali.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class UtentiController {
     @Autowired
     private UtentiService utentiService;
+
     @GetMapping
     public Page<Utente>getUtenti(@RequestParam(defaultValue = "0") int page,
                                  @RequestParam(defaultValue = "10") int size,

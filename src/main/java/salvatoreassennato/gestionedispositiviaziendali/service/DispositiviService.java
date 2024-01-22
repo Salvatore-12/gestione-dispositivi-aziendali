@@ -47,8 +47,7 @@ public class DispositiviService {
 
         return dispositiviDAO.save(found);
     }
-    public void findByIdAndDelete(UUID id){
-      Dispositivo found=this.findById(id);
-        dispositiviDAO.save(found);
+    public void findByIdAndDelete(UUID utenteid){
+        dispositiviDAO.deleteById(utenteid);
     }
 }
