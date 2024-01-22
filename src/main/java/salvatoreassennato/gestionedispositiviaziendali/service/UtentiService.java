@@ -38,10 +38,6 @@ public class UtentiService {
         return utentiDAO.save(newUtente);
     }
 
-    public Utente findByEmail(String email)throws NotFoundException {
-        return utentiDAO.findByEmail(email).orElseThrow(()->new NotFoundException("Utente con email"+email+"trovata!"));
-
-    }
     public Utente findByIdAndUpdate(UUID id,Utente body){
         Utente found=this.findById(id);
         found.setNome_Utente(body.getNome_Utente());
@@ -51,6 +47,12 @@ public class UtentiService {
         return utentiDAO.save(found);
     }
     public void findByIdAndDelete(UUID id){
-        utentiDAO.deleteById(id);
+        Utente found=this.findById(id);
+        this.utentiDAO.delete(found);
+    }
+  //Creazione metodo FindByEmail
+    public Utente findByEmail(String email)throws NotFoundException {
+        return utentiDAO.findByEmail(email).orElseThrow(()->new NotFoundException("Utente con email"+email+"trovata!"));
+
     }
 }

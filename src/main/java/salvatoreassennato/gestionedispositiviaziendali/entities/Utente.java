@@ -22,5 +22,6 @@ public class Utente {
     private String nome;
     private String cognome;
     private String email;
+    private String password; //messo attributo password
 
 }
