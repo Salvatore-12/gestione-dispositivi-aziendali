@@ -20,8 +20,8 @@ public class JWTTools {
          return Jwts.builder().subject(String.valueOf(utente.getId()))// subject: A chi appartiene il token (id dell'utente)
                 .issuedAt(new Date(System.currentTimeMillis()))       // Data di emissione (IAT - Issued At)
                 .expiration(new  Date(System.currentTimeMillis()+1000*60*60*24*7))// Data di scadenza del token (Expiration Date)
-                .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
-                .compact(); //firmo il token con il nostro secret
+                .signWith(Keys.hmacShaKeyFor(secret.getBytes())) //firmo il token con il nostro secret
+                .compact();
     }
     public void verifyToken(String token) { // Dato un token mi lancia eccezioni in caso di token manipolato/scaduto
         try {

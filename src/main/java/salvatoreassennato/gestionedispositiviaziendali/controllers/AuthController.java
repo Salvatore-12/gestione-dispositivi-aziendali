@@ -20,15 +20,15 @@ import salvatoreassennato.gestionedispositiviaziendali.service.UtentiService;
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
-    AuthService authService;
+    private AuthService authService;
     @Autowired
-    UtentiService utentiService;
+    private UtentiService utentiService;
     @PostMapping("/login")
     public UtenteLoginResponseDTO login(@RequestBody UtenteLoginDTO body){
        String accessToken= authService.authenticateUtente(body);
        return new UtenteLoginResponseDTO(accessToken);
     }
-    @PostMapping("register")
+    @PostMapping("/register")
     public NewUtenteResponseDTO createUtente(@RequestBody @Validated NewUtenteDTO newUtenteDTO, BindingResult validation){
     // Per completare la validazione devo in qualche maniera fare un controllo del tipo:
     // se ci sono errori -> manda risposta con 400 Bad Request
@@ -38,7 +38,6 @@ public class AuthController {
             throw new BadRequestException("Ci sono errori nel payload!"); // L'eccezione arriverà agli error handlers tra i quali c'è quello che manderà la risposta con status code 400
         } else {
             Utente newUser = utentiService.save(newUtenteDTO);
-
             return new NewUtenteResponseDTO(newUser.getId());
         }
     }
