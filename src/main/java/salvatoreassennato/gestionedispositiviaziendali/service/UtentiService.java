@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import salvatoreassennato.gestionedispositiviaziendali.entities.Role;
 import salvatoreassennato.gestionedispositiviaziendali.entities.Utente;
 import salvatoreassennato.gestionedispositiviaziendali.exceptions.BadRequestException;
 import salvatoreassennato.gestionedispositiviaziendali.exceptions.NotFoundException;
@@ -35,6 +36,7 @@ public class UtentiService {
         newUtente.setCognome(body.cognome());
         newUtente.setEmail(body.email());
         newUtente.setPassword(body.password());
+        newUtente.setRole(Role.UTENTE);
         return utentiDAO.save(newUtente);
     }
 
