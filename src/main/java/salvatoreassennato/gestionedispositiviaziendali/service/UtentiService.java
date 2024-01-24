@@ -31,10 +31,10 @@ public class UtentiService {
             throw new BadRequestException("L'email " + user.getEmail() + " è già in uso!");
         });
         Utente newUtente = new Utente();
-        newUtente.setNome_Utente(body.nome_Utente());
         newUtente.setNome(body.nome());
         newUtente.setCognome(body.cognome());
         newUtente.setEmail(body.email());
+        newUtente.setPassword(body.password());
         return utentiDAO.save(newUtente);
     }
 
